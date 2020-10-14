@@ -22,9 +22,9 @@ private:
     int targets[16];
 
 public:
-    float generate_threshold(){
+    float generate_threshold(void){
         std :: default_random_engine gen;
-        std :: uniform_real_distribution<float> dist(-1.0,1.0);
+        std :: uniform_real_distribution<float> dist(1, 1);
         threshold = dist(gen);
 
         return threshold;
