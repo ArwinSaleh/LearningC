@@ -24,10 +24,9 @@ private:
 public:
     float generate_threshold(void){
         std :: default_random_engine gen;
-        std :: uniform_real_distribution<float> dist(1, 1);
-        threshold = dist(gen);
+        std :: uniform_real_distribution<float> dist(-1.000, 1.000);
 
-        return threshold;
+        return dist(gen);
     }
 };
 
