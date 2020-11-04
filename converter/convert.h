@@ -21,7 +21,6 @@ long long decToBin(int n){
         n /= 2;
         bin += rest * i;
         i *= 10;
-
     }
     return bin;
 }

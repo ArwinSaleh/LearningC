@@ -23,8 +23,6 @@ int main() {;
     {
         printf("Wrong input\n");
     }
-    
-    
     return 0;
 }
 
