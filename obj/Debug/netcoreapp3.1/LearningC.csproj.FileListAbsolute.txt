@@ -1,0 +1,4 @@
+C:\git\LearningC\obj\Debug\netcoreapp3.1\LearningC.csprojAssemblyReference.cache
+C:\git\LearningC\obj\Debug\netcoreapp3.1\LearningC.AssemblyInfoInputs.cache
+C:\git\LearningC\obj\Debug\netcoreapp3.1\LearningC.AssemblyInfo.cs
+C:\git\LearningC\obj\Debug\netcoreapp3.1\LearningC.csproj.CoreCompileInputs.cache
