@@ -1,152 +1,68 @@
+#include <stdio.h>
+#include <string>
 #include <iostream>
-#include <conio.h>
-#include <windows.h>
+#include <cstdio>
+#include <algorithm>
+#include <unistd.h>
+#include <bits/stdc++.h>
+#include "input.h"
+#include "snake.h"
+#include "snake_map.h"
+#include <utility>
+#include "macros.h"
+
 using namespace std;
-bool gameOver;
-const int width = 20;
-const int height = 20;
-int x, y, fruitX, fruitY, score;
-int tailX[100], tailY[100];
-int nTail;
-enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN};
-eDirecton dir;
-void Setup()
+
+Snake snake;
+SnakeMap snake_map(&snake);
+
+void initialize()
 {
-    gameOver = false;
-    dir = STOP;
-    x = width / 2;
-    y = height / 2;
-    fruitX = rand() % width;
-    fruitY = rand() % height;
-    score = 0;
+    input_init();
+    input_enter_off();
 }
-void Draw()
+
+bool is_game_end()
 {
-    system("cls"); //system("clear");
-    for (int i = 0; i < width+2; i++)
-        cout << "#";
-    cout << endl;
- 
-    for (int i = 0; i < height; i++)
+    bool result = false;
+    pair<int, int> snake_head = snake.snake_head;
+    if (snake_head.first < 0 || snake_head.first >= MAP_WIDTH || snake_head.second < 0 || snake_head.second >= MAP_HEIGHT)
     {
-        for (int j = 0; j < width; j++)
-        {
-            if (j == 0)
-                cout << "#";
-            if (i == y && j == x)
-                cout << "O";
-            else if (i == fruitY && j == fruitX)
-                cout << "F";
-            else
-            {
-                bool print = false;
-                for (int k = 0; k < nTail; k++)
-                {
-                    if (tailX[k] == j && tailY[k] == i)
-                    {
-                        cout << "o";
-                        print = true;
-                    }
-                }
-                if (!print)
-                    cout << " ";
-            }
-                 
- 
-            if (j == width - 1)
-                cout << "#";
-        }
-        cout << endl;
+        result = true;
     }
- 
-    for (int i = 0; i < width+2; i++)
-        cout << "#";
-    cout << endl;
-    cout << "Score:" << score << endl;
-}
-void Input()
-{
-    if (_kbhit())
+    if (snake.is_dead)
     {
-        switch (_getch())
+        result = true;
+    }
+    return result;
+}
+
+void game_over()
+{
+    cout << "GAME IS OVER" << endl;
+}
+
+void start_game()
+{
+    while (true)
+    {
+        snake.update_movement();
+        if (is_game_end())
         {
-        case 'a':
-            dir = LEFT;
-            break;
-        case 'd':
-            dir = RIGHT;
-            break;
-        case 'w':
-            dir = UP;
-            break;
-        case 's':
-            dir = DOWN;
-            break;
-        case 'x':
-            gameOver = true;
+            game_over();
             break;
         }
+        snake_map.redraw();
+
+        usleep(PAUSE_LENGTH);
+
+        snake.validate_direction();
     }
 }
-void Logic()
-{
-    int prevX = tailX[0];
-    int prevY = tailY[0];
-    int prev2X, prev2Y;
-    tailX[0] = x;
-    tailY[0] = y;
-    for (int i = 1; i < nTail; i++)
-    {
-        prev2X = tailX[i];
-        prev2Y = tailY[i];
-        tailX[i] = prevX;
-        tailY[i] = prevY;
-        prevX = prev2X;
-        prevY = prev2Y;
-    }
-    switch (dir)
-    {
-    case LEFT:
-        x--;
-        break;
-    case RIGHT:
-        x++;
-        break;
-    case UP:
-        y--;
-        break;
-    case DOWN:
-        y++;
-        break;
-    default:
-        break;
-    }
-    //if (x > width || x < 0 || y > height || y < 0)
-    //  gameOver = true;
-    if (x >= width) x = 0; else if (x < 0) x = width - 1;
-    if (y >= height) y = 0; else if (y < 0) y = height - 1;
- 
-    for (int i = 0; i < nTail; i++)
-        if (tailX[i] == x && tailY[i] == y)
-            gameOver = true;
- 
-    if (x == fruitX && y == fruitY)
-    {
-        score += 10;
-        fruitX = rand() % width;
-        fruitY = rand() % height;
-        nTail++;
-    }
-}
+
 int main()
 {
-    Setup();
-    while (!gameOver)
-    {
-        Draw();
-        Input();
-        Logic();
-        Sleep(10); //sleep(10);
-    }
+    initialize();
+    start_game();
     return 0;
 }

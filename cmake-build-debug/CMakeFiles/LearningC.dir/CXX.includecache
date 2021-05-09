@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/arwinsaleh/Documents/git/LearningC/CodeWars/CountSmileys.cpp
+iostream
+-
+stdio.h
+-
+string
+-
+vector
+-
+
+/home/arwinsaleh/Documents/git/LearningC/CodeWars/DigPow.cpp
+iostream
+-
+
+/home/arwinsaleh/Documents/git/LearningC/CodeWars/hexToDec.cpp
+string
+-
+iostream
+-
+
+/home/arwinsaleh/Documents/git/LearningC/OpenGL/2D.c++
+windows.h
+-
+GL/glut.h
+-
+
+/home/arwinsaleh/Documents/git/LearningC/Snake/main.cpp
+iostream
+-
+conio.h
+-
+windows.h
+-
+

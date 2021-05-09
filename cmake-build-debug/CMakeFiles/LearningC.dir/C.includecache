@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/arwinsaleh/Documents/git/LearningC/converter/convert.h
+math.h
+-
+stdio.h
+-
+
+/home/arwinsaleh/Documents/git/LearningC/converter/main.c
+math.h
+-
+stdio.h
+-
+convert.h
+/home/arwinsaleh/Documents/git/LearningC/converter/convert.h
+

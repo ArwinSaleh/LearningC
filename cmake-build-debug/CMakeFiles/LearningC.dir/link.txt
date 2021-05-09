@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/LearningC.dir/CodeWars/CountSmileys.cpp.o CMakeFiles/LearningC.dir/CodeWars/DigPow.cpp.o CMakeFiles/LearningC.dir/CodeWars/hexToDec.cpp.o CMakeFiles/LearningC.dir/converter/main.c.o CMakeFiles/LearningC.dir/OpenGL/2D.c++.o CMakeFiles/LearningC.dir/Snake/main.cpp.o -o LearningC 
